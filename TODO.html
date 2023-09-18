@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <h2>P.MOHAMMED JUNAID</h2>
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+            background-color: yellow;
+            
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            height: 70%;        
+        }
+        h2{
+            color: #ff6666;
+            text-align: center;
+            height: 80px;
+        }
+
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+            height: 30%;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 5px solid #ccc;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .task-item button {
+            background-color: #ff6666;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <ul class="task-list" id="taskList">
+            <!-- Tasks will be dynamically added here -->
+        </ul>
+        <div>
+            <input type="text" id="newTask" placeholder="Add a new task">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            const taskText = document.getElementById("newTask").value;
+            if (taskText.trim() !== "") {
+                const taskList = document.getElementById("taskList");
+                const taskItem = document.createElement("li");
+                taskItem.className = "task-item";
+                taskItem.innerHTML = `
+                    <input type="checkbox">
+                    <span>${taskText}</span>
+                    <button onclick="removeTask(this)">Remove</button>
+                `;
+                taskList.appendChild(taskItem);
+                document.getElementById("newTask").value = "";
+            }
+        }
+
+        function removeTask(button) {
+            const taskList = document.getElementById("taskList");
+            taskList.removeChild(button.parentElement);
+        }
+    </script>
+</body>
+</html>
